@@ -3,7 +3,6 @@
 using namespace std;
 
 int main() {
-	cout << "Dawson Crane" << endl << endl;
 
 	Game game;
 	game.run();

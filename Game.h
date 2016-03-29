@@ -1,18 +1,20 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <string>
+#include "Player.h"
 
 using namespace std;
 // system("cls")
 class Game {
 private:
-	char map[5];
-	char sprite = '@';
+	char map[15][20];
 	ifstream f;
 	bool gameRun = true;
+	string tempMapLine;
+	Player player;
 public:
 	void loadMap();
-	void makeMap();
 	void draw();
 	void run();
 };

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-/*void Game::loadMap() {
+void Game::loadMap() {
 	f.open("map.txt");
 
 	if (!f.is_open()) {
@@ -10,32 +10,37 @@
 	}
 
 	while (f.good() && !f.eof()) {
-		for (int x = 0; x < 20; x++) {
-			for (int y = 0; y < 15; y++) {
-				f >> map[x][y];
+		for (int y = 0; y < 15; y++) {
+			getline(f, tempMapLine);
+			for (int x = 0; x < 20; x++) {
+				map[y][x] =	tempMapLine[x];
+
+				if (map[y][x] == '@') {
+					player.setPlayerX(x);
+					player.setPlayerY(y);
+				}
 			}
 		}
 	}
-
 	f.close();
-}*/
-
-void Game::makeMap() {
-	map[0] = '*';
 }
 
 void Game::draw() {
-	for (int x = 0; x < 5; x++) {
-		cout << map[x];
+	for (int y = 0; y < 15; y++) {
+		for (int x = 0; x < 20; x++) {
+			cout << map[y][x];
+		}
+		cout << endl;
 	}
-	cout << endl;
 }
 
 void Game::run() {
-	makeMap();
+	loadMap();
 
 	do {
 		draw();
+		player.keyInput();
+		player.action();
 		system("pause");
 	} while (gameRun);
 }

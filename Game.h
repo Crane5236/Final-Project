@@ -2,13 +2,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <conio.h>
 #include "Player.h"
 
 using namespace std;
-// system("cls")
+
 class Game {
 private:
-	char map[15][20];
+	char map[17][30];
+	char key;
 	ifstream f;
 	bool gameRun = true;
 	string tempMapLine;
@@ -17,4 +19,5 @@ public:
 	void loadMap();
 	void draw();
 	void run();
+	void keyInput();
 };

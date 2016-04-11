@@ -10,7 +10,7 @@ void Game::loadMap() {
 	}
 
 	while (f.good() && !f.eof()) {
-		for (int y = 0; y < 17; y++) {
+		for (int y = 0; y < 16; y++) {
 			getline(f, tempMapLine);
 			for (int x = 0; x < 30; x++) {
 				map[y][x] =	tempMapLine[x];
@@ -21,7 +21,7 @@ void Game::loadMap() {
 }
 
 void Game::draw() {
-	for (int y = 0; y < 17; y++) {
+	for (int y = 0; y < 16; y++) {
 		for (int x = 0; x < 30; x++) {
 			cout << map[y][x];
 			if (map[y][x] == '@') {
@@ -41,7 +41,8 @@ void Game::run() {
 		cout << "--------------------------------------------------------------------------------";
 		cout << "Health: " << endl;
 		cout << "Level: " << endl;
-		cout << "Gold: " << endl << endl;
+		cout << "Gold: " << endl;
+		cout << "Floor: " << endl << endl;
 		cout << "Input key (w/s/a/d/e): ";
 		keyInput();
 		system("cls");
@@ -95,16 +96,16 @@ void Game::keyInput() {
 
 	case 'e':
 		if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'C') {
-
+			openChest(player.getPlayerY() - 1, player.getPlayerX());
 		}
 		else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'C') {
-
+			openChest(player.getPlayerY() + 1, player.getPlayerX());
 		}
 		else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'C') {
-
+			openChest(player.getPlayerY(), player.getPlayerX() - 1);
 		}
 		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'C') {
-
+			openChest(player.getPlayerY(), player.getPlayerX() + 1);
 		}
 		else {
 			return;
@@ -112,4 +113,15 @@ void Game::keyInput() {
 
 			break;
 	}
+}
+
+void Game::openChest(int yCord, int xCord) {
+	map[yCord][xCord] = ' ';
+	system("cls");
+	draw();
+	cout << "--------------------------------------------------------------------------------";
+	cout << "You got an item!" << endl;
+	system("pause");
+
+	return;
 }

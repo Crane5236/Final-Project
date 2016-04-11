@@ -9,7 +9,7 @@ using namespace std;
 
 class Game {
 private:
-	char map[17][30];
+	char map[16][30];
 	char key;
 	ifstream f;
 	bool gameRun = true;
@@ -20,4 +20,5 @@ public:
 	void draw();
 	void run();
 	void keyInput();
+	void openChest(int yCord, int xCord);
 };

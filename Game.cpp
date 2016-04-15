@@ -34,17 +34,28 @@ void Game::draw() {
 }
 
 void Game::run() {
+	srand(time(NULL));
 	loadMap();
 
 	do {
 		draw();
 		cout << "--------------------------------------------------------------------------------";
 		cout << "Health: " << endl;
+		cout << "Mana: " << endl;
 		cout << "Level: " << endl;
-		cout << "Gold: " << endl;
 		cout << "Floor: " << endl << endl;
 		cout << "Input key (w/s/a/d/e): ";
 		keyInput();
+
+		if (movement = true) {
+			randomNumber = rand() % 100 + 1;
+
+			if (randomNumber >= 0 && randomNumber <= 8) {
+				battle();
+				movement = false;
+			}
+		}
+
 		system("cls");
 	} while (gameRun);
 }
@@ -57,6 +68,7 @@ void Game::keyInput() {
 		if (map[player.getPlayerY() - 1][player.getPlayerX()] == ' ') {
 			map[player.getPlayerY() - 1][player.getPlayerX()] = '@';
 			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+			movement = true;
 		}
 		else {
 			return;
@@ -67,6 +79,7 @@ void Game::keyInput() {
 		if (map[player.getPlayerY() + 1][player.getPlayerX()] == ' ') {
 			map[player.getPlayerY() + 1][player.getPlayerX()] = '@';
 			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+			movement = true;
 		}
 		else {
 			return;
@@ -77,6 +90,7 @@ void Game::keyInput() {
 		if (map[player.getPlayerY()][player.getPlayerX() - 1] == ' ') {
 			map[player.getPlayerY()][player.getPlayerX() - 1] = '@';
 			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+			movement = true;
 		}
 		else {
 			return;
@@ -87,6 +101,7 @@ void Game::keyInput() {
 		if (map[player.getPlayerY()][player.getPlayerX() + 1] == ' ') {
 			map[player.getPlayerY()][player.getPlayerX() + 1] = '@';
 			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+			movement = true;
 		}
 		else {
 			return;
@@ -123,5 +138,25 @@ void Game::openChest(int yCord, int xCord) {
 	cout << "You got an item!" << endl;
 	system("pause");
 
+	return;
+}
+
+void Game::battle() {
+	system("cls");
+
+	cout << "--------------------------------------------------" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                    Battle!                     |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "|                                                |" << endl;
+	cout << "--------------------------------------------------" << endl;
+
+	system("pause");
 	return;
 }

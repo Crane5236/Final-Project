@@ -3,6 +3,9 @@
 #include <fstream>
 #include <string>
 #include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "Player.h"
 
 using namespace std;
@@ -13,6 +16,8 @@ private:
 	char key;
 	ifstream f;
 	bool gameRun = true;
+	bool movement = false;
+	int randomNumber;
 	string tempMapLine;
 	Player player;
 public:
@@ -21,4 +26,5 @@ public:
 	void run();
 	void keyInput();
 	void openChest(int yCord, int xCord);
+	void battle();
 };

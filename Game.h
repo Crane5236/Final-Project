@@ -12,7 +12,7 @@ using namespace std;
 
 class Game {
 private:
-	char map[16][30];
+	char map[16][40];
 	char key;
 	ifstream f;
 	bool gameRun = true;

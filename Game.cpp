@@ -1,7 +1,7 @@
 #include "Game.h"
 
 void Game::loadMap() {
-	f.open("map.txt");
+	f.open("Test.txt");
 
 	if (!f.is_open()) {
 		cout << "File could not be opened" << endl;
@@ -12,7 +12,7 @@ void Game::loadMap() {
 	while (f.good() && !f.eof()) {
 		for (int y = 0; y < 16; y++) {
 			getline(f, tempMapLine);
-			for (int x = 0; x < 30; x++) {
+			for (int x = 0; x < 40; x++) {
 				map[y][x] =	tempMapLine[x];
 			}
 		}
@@ -22,7 +22,7 @@ void Game::loadMap() {
 
 void Game::draw() {
 	for (int y = 0; y < 16; y++) {
-		for (int x = 0; x < 30; x++) {
+		for (int x = 0; x < 40; x++) {
 			cout << map[y][x];
 			if (map[y][x] == '@') {
 				player.setPlayerX(x);

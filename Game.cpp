@@ -1,7 +1,44 @@
 #include "Game.h"
 
-void Game::loadMap() {
-	f.open("Test.txt");
+void Game::loadMap(int floor) {
+	switch (floor){
+	case 0:
+		f.open("Hub.txt");
+		break;
+	case 1:
+		f.open("Level1.txt");
+		break;
+	case 2:
+		f.open("Level2.txt");
+		break;
+	case 3:
+		f.open("Level3.txt");
+		break;
+	case 4:
+		f.open("Level4.txt");
+		break;
+	case 5:
+		f.open("Level5.txt");
+		break;
+	case 6:
+		f.open("Level6.txt");
+		break;
+	case 7:
+		f.open("Level7.txt");
+		break;
+	case 8:
+		f.open("Level8.txt");
+		break;
+	case 9:
+		f.open("Level9.txt");
+		break;
+	case 10:
+		f.open("Level10.txt");
+		break;
+	case 11:
+		f.open("Final.txt");
+		break;
+	}
 
 	if (!f.is_open()) {
 		cout << "File could not be opened" << endl;
@@ -44,7 +81,8 @@ void Game::draw() {
 
 void Game::run() {
 	srand(time(NULL));
-	loadMap();
+	floor = 0;
+	loadMap(floor);
 
 	do {
 		draw();
@@ -56,12 +94,11 @@ void Game::run() {
 		cout << "Input key (w/s/a/d/e): ";
 		keyInput();
 
-		if (movement = true) {
+		if (movement == true) {
 			randomNumber = rand() % 100 + 1;
 
 			if (randomNumber >= 0 && randomNumber <= 8) {
 				battle();
-				movement = false;
 			}
 		}
 
@@ -143,6 +180,18 @@ void Game::keyInput() {
 		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'K') {
 			openDoor();
 		}
+		else if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'S') {
+			stairs();
+		}
+		else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'S') {
+			stairs();
+		}
+		else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'S') {
+			stairs();
+		}
+		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'S') {
+			stairs();
+		}
 		else {
 			return;
 		}
@@ -179,6 +228,7 @@ void Game::battle() {
 	cout << "--------------------------------------------------" << endl;
 
 	system("pause");
+	movement = false;
 	return;
 }
 
@@ -186,5 +236,30 @@ void Game::openDoor() {
 	map[keyY][keyX] = ' ';
 	map[doorY][doorX] = ' ';
 
+	return;
+}
+
+void Game::stairs() {
+	int choice;
+
+	do {
+		system("cls");
+		draw();
+		cout << "--------------------------------------------------------------------------------";
+		cout << "Do you want to advance to the next floor?" << endl;
+		cout << "1. Yes" << endl;
+		cout << "2. No" << endl;
+		cin >> choice;
+	} while (choice < 1 || choice > 2);
+
+	if (choice == 1) {
+		floor++;
+		loadMap(floor);
+	}
+	else {
+		system("cls");
+		return;
+	}
+	system("cls");
 	return;
 }

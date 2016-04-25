@@ -22,14 +22,16 @@ private:
 	int keyY;
 	int doorX;
 	int doorY;
+	int floor;
 	string tempMapLine;
 	Player player;
 public:
-	void loadMap();
+	void loadMap(int floor);
 	void draw();
 	void run();
 	void keyInput();
 	void openChest(int yCord, int xCord);
 	void battle();
 	void openDoor();
+	void stairs();
 };

@@ -18,6 +18,10 @@ private:
 	bool gameRun = true;
 	bool movement = false;
 	int randomNumber;
+	int keyX;
+	int keyY;
+	int doorX;
+	int doorY;
 	string tempMapLine;
 	Player player;
 public:
@@ -27,4 +31,5 @@ public:
 	void keyInput();
 	void openChest(int yCord, int xCord);
 	void battle();
+	void openDoor();
 };

@@ -14,6 +14,15 @@ void Game::loadMap() {
 			getline(f, tempMapLine);
 			for (int x = 0; x < 40; x++) {
 				map[y][x] =	tempMapLine[x];
+
+				if (map[y][x] == 'K') {
+					keyY = y;
+					keyX = x;
+				}
+				if (map[y][x] == 'D') {
+					doorY = y;
+					doorX = x;
+				}
 			}
 		}
 	}
@@ -122,6 +131,18 @@ void Game::keyInput() {
 		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'C') {
 			openChest(player.getPlayerY(), player.getPlayerX() + 1);
 		}
+		else if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'K') {
+			openDoor();
+		}
+		else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'K') {
+			openDoor();
+		}
+		else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'K') {
+			openDoor();
+		}
+		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'K') {
+			openDoor();
+		}
 		else {
 			return;
 		}
@@ -158,5 +179,12 @@ void Game::battle() {
 	cout << "--------------------------------------------------" << endl;
 
 	system("pause");
+	return;
+}
+
+void Game::openDoor() {
+	map[keyY][keyX] = ' ';
+	map[doorY][doorX] = ' ';
+
 	return;
 }

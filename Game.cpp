@@ -80,6 +80,7 @@ void Game::draw() {
 }
 
 void Game::run() {
+	menu();
 	srand(time(NULL));
 	floor = 0;
 	loadMap(floor);
@@ -262,4 +263,24 @@ void Game::stairs() {
 	}
 	system("cls");
 	return;
+}
+
+void Game::menu() {
+	int choice;
+	do {
+		system("cls");
+		cout << "Tower of Tartarus" << endl << endl;
+		cout << "1. New Game" << endl;
+		cout << "2. Load Game" << endl;
+		cin >> choice;
+	} while (choice < 1 || choice > 2);
+	system("cls");
+
+	if (choice == 1) {
+		cout << "Enter your name: ";
+		cin.ignore();
+		getline(cin, name);
+	}
+
+	system("cls");
 }

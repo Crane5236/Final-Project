@@ -24,6 +24,7 @@ private:
 	int doorY;
 	int floor;
 	string tempMapLine;
+	string name;
 	Player player;
 public:
 	void loadMap(int floor);
@@ -34,4 +35,5 @@ public:
 	void battle();
 	void openDoor();
 	void stairs();
+	void menu();
 };

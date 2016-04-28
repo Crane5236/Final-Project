@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Player.h"
+#include "Entity.h"
 
 using namespace std;
 

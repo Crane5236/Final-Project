@@ -17,6 +17,8 @@ private:
 	ifstream f;
 	bool gameRun = true;
 	bool movement = false;
+	bool TP5;
+	bool TP10;
 	int randomNumber;
 	int keyX;
 	int keyY;
@@ -36,4 +38,6 @@ public:
 	void openDoor();
 	void stairs();
 	void menu();
+	void teleporter();
+	void activateTP(int floor);
 };

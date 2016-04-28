@@ -50,7 +50,7 @@ void Game::loadMap(int floor) {
 		for (int y = 0; y < 16; y++) {
 			getline(f, tempMapLine);
 			for (int x = 0; x < 40; x++) {
-				map[y][x] =	tempMapLine[x];
+				map[y][x] = tempMapLine[x];
 
 				if (map[y][x] == 'K') {
 					keyY = y;
@@ -83,6 +83,8 @@ void Game::run() {
 	menu();
 	srand(time(NULL));
 	floor = 0;
+	TP5 = false;
+	TP10 = false;
 	loadMap(floor);
 
 	do {
@@ -91,15 +93,25 @@ void Game::run() {
 		cout << "Health: " << endl;
 		cout << "Mana: " << endl;
 		cout << "Level: " << endl;
-		cout << "Floor: " << endl << endl;
+		cout << "Floor: ";
+		if (floor == 0) {
+			cout << "Hub" << endl << endl;
+		}
+		else {
+			cout << floor << endl << endl;
+		}
 		cout << "Input key (w/s/a/d/e): ";
 		keyInput();
 
 		if (movement == true) {
-			randomNumber = rand() % 100 + 1;
+			if (floor == 0 || floor == 10 || floor == 11) {
+			}
+			else {
+				randomNumber = rand() % 100 + 1;
 
-			if (randomNumber >= 0 && randomNumber <= 8) {
-				battle();
+				if (randomNumber >= 0 && randomNumber <= 8) {
+					//battle();
+				}
 			}
 		}
 
@@ -193,13 +205,97 @@ void Game::keyInput() {
 		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'S') {
 			stairs();
 		}
-		else {
-			return;
+		else if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'T') {
+			if (floor == 0) {
+				teleporter();
+			}
+			else if (floor == 5) {
+				if (TP5 == false) {
+					activateTP(floor);
+				}
+				else {
+					teleporter();
+				}
+			}
+			else if (floor == 10) {
+				if (TP10 == false) {
+					activateTP(floor);
+				}
+				else {
+					teleporter();
+				}
+			}
 		}
+			else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'T') {
+				if (floor == 0) {
+					teleporter();
+				}
+				else if (floor == 5) {
+					if (TP5 == false) {
+						activateTP(floor);
+					}
+					else {
+						teleporter();
+					}
+				}
+				else if (floor == 10) {
+					if (TP10 == false) {
+						activateTP(floor);
+					}
+					else {
+						teleporter();
+					}
+				}
+			}
+			else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'T') {
+				if (floor == 0) {
+					teleporter();
+				}
+				else if (floor == 5) {
+					if (TP5 == false) {
+						activateTP(floor);
+					}
+					else {
+						teleporter();
+					}
+				}
+				else if (floor == 10) {
+					if (TP10 == false) {
+						activateTP(floor);
+					}
+					else {
+						teleporter();
+					}
+				}
+			}
+			else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'T') {
+				if (floor == 0) {
+					teleporter();
+				}
+				else if (floor == 5) {
+					if (TP5 == false) {
+						activateTP(floor);
+					}
+					else {
+						teleporter();
+					}
+				}
+				else if (floor == 10) {
+					if (TP10 == false) {
+						activateTP(floor);
+					}
+					else {
+						teleporter();
+					}
+				}
+			}
+			else {
+				return;
+			}
 
 			break;
+		}
 	}
-}
 
 void Game::openChest(int yCord, int xCord) {
 	map[yCord][xCord] = ' ';
@@ -283,4 +379,116 @@ void Game::menu() {
 	}
 
 	system("cls");
+}
+
+void Game::teleporter() {
+	int choice;
+	bool loopRun = true;
+	do {
+		system("cls");
+		cout << "Enter the floor number to teleport:" << endl << endl;
+		cout << "Floor 0" << endl;
+
+		if (TP5) {
+			cout << "Floor 5" << endl;
+		}
+
+		if (TP10) {
+			cout << "Floor 10" << endl;
+		}
+		cin >> choice;
+		switch (choice) {
+		case 0:
+			loopRun = false;
+			break;
+		case 5:
+			loopRun = false;
+			break;
+		case 10:
+			loopRun = false;
+			break;
+		default:
+			break;
+		}
+	} while (loopRun);
+
+		if (choice == 0) {
+			if (floor == 0) {
+				cout << "You are already on that floor." << endl;
+				system("pause");
+				system("cls");
+				return;
+			}
+			else {
+				floor = 0;
+				loadMap(floor);
+				system("cls");
+				return;
+			}
+		}
+
+		if (choice == 5) {
+			if (floor == 5) {
+				cout << "You are already on that floor." << endl;
+				system("pause");
+				system("cls");
+				return;
+			}
+			else if (TP5 == false) {
+				cout << "You cannot teleport to that floor." << endl;
+				system("pause");
+				system("cls");
+				return;
+			}
+			else {
+				floor = 5;
+				loadMap(floor);
+				system("cls");
+				return;
+			}
+		}
+
+		if (choice == 10) {
+			if (floor == 10) {
+				cout << "You are already on that floor." << endl;
+				system("pause");
+				system("cls");
+				return;
+			}
+			else if (TP10 == false) {
+				cout << "You cannot teleport to that floor." << endl;
+				system("pause");
+				system("cls");
+				return;
+			}
+			else {
+				floor = 10;
+				loadMap(floor);
+				system("cls");
+				return;
+			}
+		}
+}
+
+void Game::activateTP(int floor) {
+	if (floor == 5) {
+		TP5 = true;
+		system("cls");
+		draw();
+		cout << "--------------------------------------------------------------------------------";
+		cout << "Teleporter has been activated!" << endl;
+		system("pause");
+		system("cls");
+		return;
+	}
+	else if (floor == 10) {
+		TP10 = true;
+		system("cls");
+		draw();
+		cout << "--------------------------------------------------------------------------------";
+		cout << "Teleporter has been activated!" << endl;
+		system("pause");
+		system("cls");
+		return;
+	}
 }

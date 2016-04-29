@@ -107,10 +107,10 @@ void Game::run() {
 			if (floor == 0 || floor == 10 || floor == 11) {
 			}
 			else {
-				randomNumber = rand() % 100 + 1;
+				randomNumber = rand() % 24 + 1;
 
-				if (randomNumber >= 0 && randomNumber <= 8) {
-					//battle();
+				if (randomNumber == 1) {
+					battle();
 				}
 			}
 		}

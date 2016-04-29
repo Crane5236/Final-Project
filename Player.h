@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
+#include "Entity.h"
 
 using namespace std;
 
-class Player {
+class Player : public Entity {
 private:
 	int playerXPos;
 	int playerYPos;

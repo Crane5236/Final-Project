@@ -12,8 +12,8 @@ public:
 	int getAttack();
 	int getDefense();
 
-	void setHealth(int value);
-	void setMana(int value);
-	void setAttack(int value);
-	void setDefense(int value);
+	void setHealth(int &value);
+	void setMana(int &value);
+	void setAttack(int &value);
+	void setDefense(int &value);
 };

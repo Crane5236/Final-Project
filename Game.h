@@ -8,6 +8,7 @@
 #include <time.h>
 #include "Player.h"
 #include "Entity.h"
+#include "Monster.h"
 
 using namespace std;
 

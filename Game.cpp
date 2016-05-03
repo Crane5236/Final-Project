@@ -375,7 +375,8 @@ void Game::menu() {
 	if (choice == 1) {
 		cout << "Enter your name: ";
 		cin.ignore();
-		getline(cin, name);
+		getline(cin, Pname);
+		player.setName(Pname);
 	}
 
 	system("cls");

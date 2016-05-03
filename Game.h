@@ -28,7 +28,7 @@ private:
 	int doorY;
 	int floor;
 	string tempMapLine;
-	string name;
+	string Pname;
 	Player player;
 public:
 	void loadMap(int floor);

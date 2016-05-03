@@ -1,22 +1,17 @@
-﻿Build started 4/29/2016 10:03:32 AM.
-     1>Project "\\dav.edu\students\HS17$\dccrane87\my documents\visual studio 2013\Projects\Final Project\Final Project\Final Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 5/3/2016 10:37:53 AM.
+     1>Project "\\dav.edu\students\HS17$\dccrane87\My Documents\Visual Studio 2013\Projects\Final Project\Final Project\Final Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp main.cpp
-         Game.cpp
-     1>\\dav.edu\students\hs17$\dccrane87\my documents\visual studio 2013\projects\final project\final project\game.cpp(84): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-         Generating Code...
-         Compiling...
-         main.cpp
-         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Entity.cpp
+         Entity.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\dav.edu\students\hs17$\dccrane87\my documents\visual studio 2013\Projects\Final Project\Debug\Final Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"\\dav.edu\students\hs17$\dccrane87\my documents\visual studio 2013\Projects\Final Project\Debug\Final Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\dav.edu\students\hs17$\dccrane87\my documents\visual studio 2013\Projects\Final Project\Debug\Final Project.lib" /MACHINE:X86 Debug\Entity.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\dav.edu\students\HS17$\dccrane87\My Documents\Visual Studio 2013\Projects\Final Project\Debug\Final Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"\\dav.edu\students\HS17$\dccrane87\My Documents\Visual Studio 2013\Projects\Final Project\Debug\Final Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\dav.edu\students\HS17$\dccrane87\My Documents\Visual Studio 2013\Projects\Final Project\Debug\Final Project.lib" /MACHINE:X86 Debug\Entity.obj
          Debug\Game.obj
          Debug\main.obj
          Debug\Monster.obj
          Debug\Player.obj
-         Final Project.vcxproj -> \\dav.edu\students\hs17$\dccrane87\my documents\visual studio 2013\Projects\Final Project\Debug\Final Project.exe
-     1>Done Building Project "\\dav.edu\students\HS17$\dccrane87\my documents\visual studio 2013\Projects\Final Project\Final Project\Final Project.vcxproj" (Build target(s)).
+         Final Project.vcxproj -> \\dav.edu\students\HS17$\dccrane87\My Documents\Visual Studio 2013\Projects\Final Project\Debug\Final Project.exe
+     1>Done Building Project "\\dav.edu\students\HS17$\dccrane87\My Documents\Visual Studio 2013\Projects\Final Project\Final Project\Final Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.74
+Time Elapsed 00:00:02.79

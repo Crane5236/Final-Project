@@ -2,18 +2,25 @@
 
 class Entity {
 private:
+	int maxHealth;
 	int health;
 	int mana;
-	int attack;
+	int strength;
 	int defense;
 public:
 	int getHealth();
+	int getMaxHealth();
 	int getMana();
-	int getAttack();
+	int getStrength();
 	int getDefense();
 
-	void setHealth(int &value);
-	void setMana(int &value);
-	void setAttack(int &value);
-	void setDefense(int &value);
+	void setMaxHealth(int value);
+	void setHealth(int value);
+	void setMana(int value);
+	void setStrength(int value);
+	void setDefense(int value);
+
+	bool hit();
+	int attack(Entity *other);
+	int getDamage(Entity *other);
 };

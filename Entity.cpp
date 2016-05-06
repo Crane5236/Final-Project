@@ -13,12 +13,20 @@ int Entity::getMana() {
 	return mana;
 }
 
+int Entity::getMaxMana() {
+	return maxMana;
+}
+
 int Entity::getStrength() {
 	return strength;
 }
 
 int Entity::getDefense() {
 	return defense;
+}
+
+int Entity::getLevel() {
+	return level;
 }
 
 void Entity::setMaxHealth(int value) {
@@ -33,12 +41,20 @@ void Entity::setMana(int value) {
 	mana = value;
 }
 
+void Entity::setMaxMana(int value) {
+	mana = value;
+}
+
 void Entity::setStrength(int value) {
 	strength = value;
 }
 
 void Entity::setDefense(int value) {
 	defense = value;
+}
+
+void Entity::setLevel(int value) {
+	level = value;
 }
 
 bool Entity::hit() {

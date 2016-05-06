@@ -87,9 +87,11 @@ void Game::run() {
 	TP10 = false;
 	loadMap(floor);
 
-	do {
+	
+
+	/*do {
 		draw();
-		cout << "--------------------------------------------------------------------------------";
+		cout << "________________________________________________________________________________";
 		cout << "Health: " << endl;
 		cout << "Mana: " << endl;
 		cout << "Level: " << endl;
@@ -110,13 +112,15 @@ void Game::run() {
 				randomNumber = rand() % 24 + 1;
 
 				if (randomNumber == 1) {
-					battle();
+					battle(p, m);
 				}
 			}
 		}
 
 		system("cls");
-	} while (gameRun);
+	} while (gameRun);*/
+	battleScreen(p);
+	system("pause");
 }
 
 void Game::keyInput() {
@@ -301,32 +305,42 @@ void Game::openChest(int yCord, int xCord) {
 	map[yCord][xCord] = ' ';
 	system("cls");
 	draw();
-	cout << "--------------------------------------------------------------------------------";
+	cout << "________________________________________________________________________________";
 	cout << "You got an item!" << endl;
 	system("pause");
 
 	return;
 }
 
-void Game::battle() {
+void Game::battle(Player p, Monster m) {
 	system("cls");
-
-	cout << "--------------------------------------------------" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                    Battle!                     |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "|                                                |" << endl;
-	cout << "--------------------------------------------------" << endl;
+	char turn = 'P';
+	
+	/*while (p.getHealth() == 0 && m.getHealth() == 0) {
+		if (turn == 'P') {
+			if (p.hit()) {
+				cout << "You hit the enemy!" << endl;
+			}
+		}
+	}*/
 
 	system("pause");
 	movement = false;
 	return;
+}
+
+void Game::battleScreen(Player p) {
+	cout << "------------------" << endl;
+	cout << "|" << setw(16) << left << p.getName() << "|" << endl;
+	cout << "|" << "Level " << setw(10) << right << p.getLevel() << "|" << endl;
+	cout << "|" << "HP" << setw(14) << right << p.getHealth() << "|" << endl;
+	cout << "|" << "MP" << setw(14) << p.getMana() << "|" << endl;
+	cout << "------------------" << endl;
+	cout << "------------------------" << endl;
+	cout << "|1. Attack     2. Spell|" << endl;
+	cout << "|3. Item       3. Run  |" << endl;
+	cout << "------------------------" << endl;
+	cout << "________________________________________________________________________________";
 }
 
 void Game::openDoor() {
@@ -342,7 +356,7 @@ void Game::stairs() {
 	do {
 		system("cls");
 		draw();
-		cout << "--------------------------------------------------------------------------------";
+		cout << "________________________________________________________________________________";
 		cout << "Do you want to advance to the next floor?" << endl;
 		cout << "1. Yes" << endl;
 		cout << "2. No" << endl;
@@ -376,7 +390,7 @@ void Game::menu() {
 		cout << "Enter your name: ";
 		cin.ignore();
 		getline(cin, Pname);
-		player.setName(Pname);
+		p.setName(Pname);
 	}
 
 	system("cls");
@@ -476,7 +490,7 @@ void Game::activateTP(int floor) {
 		TP5 = true;
 		system("cls");
 		draw();
-		cout << "--------------------------------------------------------------------------------";
+		cout << "________________________________________________________________________________";
 		cout << "Teleporter has been activated!" << endl;
 		system("pause");
 		system("cls");
@@ -486,7 +500,7 @@ void Game::activateTP(int floor) {
 		TP10 = true;
 		system("cls");
 		draw();
-		cout << "--------------------------------------------------------------------------------";
+		cout << "________________________________________________________________________________";
 		cout << "Teleporter has been activated!" << endl;
 		system("pause");
 		system("cls");

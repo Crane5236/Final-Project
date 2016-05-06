@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <iomanip>
 #include "Player.h"
 #include "Entity.h"
 #include "Monster.h"
@@ -30,13 +31,16 @@ private:
 	string tempMapLine;
 	string Pname;
 	Player player;
+	Player p;
+	Monster m;
 public:
 	void loadMap(int floor);
 	void draw();
 	void run();
 	void keyInput();
 	void openChest(int yCord, int xCord);
-	void battle();
+	void battle(Player p, Monster m);
+	void battleScreen(Player p);
 	void openDoor();
 	void stairs();
 	void menu();

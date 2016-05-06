@@ -29,4 +29,7 @@ Player::Player() {
 	setHealth(13);
 	setStrength(7);
 	setDefense(4);
+	setLevel(1);
+	setMana(15);
+	setMaxMana(15);
 }

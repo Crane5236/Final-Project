@@ -10,5 +10,6 @@ private:
 	string name;
 public:
 	void setName(string value);
+	string getName();
 	Monster();
 };

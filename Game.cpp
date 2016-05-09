@@ -89,12 +89,12 @@ void Game::run() {
 
 	
 
-	/*do {
+	do {
 		draw();
 		cout << "________________________________________________________________________________";
-		cout << "Health: " << endl;
-		cout << "Mana: " << endl;
-		cout << "Level: " << endl;
+		cout << "Health: " << p.getHealth() << "/" << p.getMaxHealth() << endl;
+		cout << "Mana: " << p.getMana() << "/" << p.getMaxMana() << endl;
+		cout << "Level: "<< p.getLevel() << endl;
 		cout << "Floor: ";
 		if (floor == 0) {
 			cout << "Hub" << endl << endl;
@@ -118,8 +118,7 @@ void Game::run() {
 		}
 
 		system("cls");
-	} while (gameRun);*/
-	battleScreen(p);
+	} while (gameRun);
 	system("pause");
 }
 
@@ -313,16 +312,68 @@ void Game::openChest(int yCord, int xCord) {
 }
 
 void Game::battle(Player p, Monster m) {
-	system("cls");
 	char turn = 'P';
+	system("cls");
+
+	cout << "---------------------------------" << endl;
+	cout << "|                               |" << endl;
+	cout << "|                               |" << endl;
+	cout << "|    An enemy has appeared!     |" << endl;
+	cout << "|                               |" << endl;
+	cout << "|                               |" << endl;
+	cout << "---------------------------------" << endl;
+	system("pause");
 	
-	/*while (p.getHealth() == 0 && m.getHealth() == 0) {
+	while (p.getHealth() != 0 && m.getHealth() != 0) {
 		if (turn == 'P') {
-			if (p.hit()) {
-				cout << "You hit the enemy!" << endl;
+			system("cls");
+			battleScreen(p);
+			cout << "Select an option: ";
+			do {
+				cin >> choice;
+			} while (choice < 1 && choice > 4);
+			switch (choice) {
+			case 1:
+				if (p.hit()) {
+					cout << "You hit the " << m.getName() << " for " << p.attack(&m) << endl;
+					system("pause");
+				}
+				else {
+					cout << "You missed!" << endl;
+					system("pause");
+				}
+				turn = 'M';
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4: 
+				break;
 			}
 		}
-	}*/
+		else {
+			if (m.hit()) {
+				cout << "The " << m.getName() << " is attacking!" << endl;
+				cout << "You lost " << m.attack(&p) << " health!" << endl;
+				system("pause");
+			}
+			else {
+				cout << "The " << m.getName() << " missed!" << endl;
+				system("pause");
+			}
+			turn = 'P';
+		}
+	}
+
+	if (p.getHealth() == 0) {
+		cout << "You have died! Game over!" << endl;
+		system("pause");
+	}
+	else {
+		cout << "You have won!" << endl;
+		system("pause");
+	}
 
 	system("pause");
 	movement = false;
@@ -336,10 +387,10 @@ void Game::battleScreen(Player p) {
 	cout << "|" << "HP" << setw(14) << right << p.getHealth() << "|" << endl;
 	cout << "|" << "MP" << setw(14) << p.getMana() << "|" << endl;
 	cout << "------------------" << endl;
-	cout << "------------------------" << endl;
-	cout << "|1. Attack     2. Spell|" << endl;
-	cout << "|3. Item       3. Run  |" << endl;
-	cout << "------------------------" << endl;
+	cout << "------------------------      ------------------------" << endl;
+	cout << "|1. Attack     2. Spell|      |Enemy:                |" << endl;
+	cout << "|3. Item       4. Run  |      |Level " << setw(2) << left << m.getLevel() << " " << setw(13) << left <<  m.getName() << "|" << endl;
+	cout << "------------------------      ------------------------" << endl;
 	cout << "________________________________________________________________________________";
 }
 

@@ -42,7 +42,7 @@ void Entity::setMana(int value) {
 }
 
 void Entity::setMaxMana(int value) {
-	mana = value;
+	maxMana = value;
 }
 
 void Entity::setStrength(int value) {
@@ -60,7 +60,7 @@ void Entity::setLevel(int value) {
 bool Entity::hit() {
 	int randomNumber;
 
-	randomNumber = rand() % 4 + 1;
+	randomNumber = rand() % 10 + 1;
 
 	if (randomNumber == 1) {
 		return false;

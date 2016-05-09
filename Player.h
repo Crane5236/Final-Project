@@ -18,9 +18,5 @@ public:
 	int getPlayerY();
 	string getName();
 
-	bool hit();
-	int attack(Entity *other);
-	int getDamage(Entity *other);
-
 	Player();
 };

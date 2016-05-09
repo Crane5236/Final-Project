@@ -28,6 +28,7 @@ private:
 	int doorX;
 	int doorY;
 	int floor;
+	int choice;
 	string tempMapLine;
 	string Pname;
 	Player player;

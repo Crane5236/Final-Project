@@ -31,7 +31,6 @@ private:
 	int choice;
 	string tempMapLine;
 	string Pname;
-	Player player;
 	Player p;
 	Monster m;
 public:
@@ -40,7 +39,7 @@ public:
 	void run();
 	void keyInput();
 	void openChest(int yCord, int xCord);
-	void battle(Player p, Monster m);
+	void battle(Player &p, Monster &m);
 	void battleScreen(Player p);
 	void openDoor();
 	void stairs();

@@ -71,8 +71,8 @@ void Game::draw() {
 		for (int x = 0; x < 40; x++) {
 			cout << map[y][x];
 			if (map[y][x] == '@') {
-				player.setPlayerX(x);
-				player.setPlayerY(y);
+				p.setPlayerX(x);
+				p.setPlayerY(y);
 			}
 		}
 		cout << endl;
@@ -112,6 +112,7 @@ void Game::run() {
 				randomNumber = rand() % 24 + 1;
 
 				if (randomNumber == 1) {
+					m = Monster();
 					battle(p, m);
 				}
 			}
@@ -127,9 +128,9 @@ void Game::keyInput() {
 
 	switch (key) {
 	case 'w':
-		if (map[player.getPlayerY() - 1][player.getPlayerX()] == ' ') {
-			map[player.getPlayerY() - 1][player.getPlayerX()] = '@';
-			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+		if (map[p.getPlayerY() - 1][p.getPlayerX()] == ' ') {
+			map[p.getPlayerY() - 1][p.getPlayerX()] = '@';
+			map[p.getPlayerY()][p.getPlayerX()] = ' ';
 			movement = true;
 		}
 		else {
@@ -138,9 +139,9 @@ void Game::keyInput() {
 
 		break;
 	case 's':
-		if (map[player.getPlayerY() + 1][player.getPlayerX()] == ' ') {
-			map[player.getPlayerY() + 1][player.getPlayerX()] = '@';
-			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+		if (map[p.getPlayerY() + 1][p.getPlayerX()] == ' ') {
+			map[p.getPlayerY() + 1][p.getPlayerX()] = '@';
+			map[p.getPlayerY()][p.getPlayerX()] = ' ';
 			movement = true;
 		}
 		else {
@@ -149,9 +150,9 @@ void Game::keyInput() {
 
 		break;
 	case 'a':
-		if (map[player.getPlayerY()][player.getPlayerX() - 1] == ' ') {
-			map[player.getPlayerY()][player.getPlayerX() - 1] = '@';
-			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+		if (map[p.getPlayerY()][p.getPlayerX() - 1] == ' ') {
+			map[p.getPlayerY()][p.getPlayerX() - 1] = '@';
+			map[p.getPlayerY()][p.getPlayerX()] = ' ';
 			movement = true;
 		}
 		else {
@@ -160,9 +161,9 @@ void Game::keyInput() {
 
 		break;
 	case 'd':
-		if (map[player.getPlayerY()][player.getPlayerX() + 1] == ' ') {
-			map[player.getPlayerY()][player.getPlayerX() + 1] = '@';
-			map[player.getPlayerY()][player.getPlayerX()] = ' ';
+		if (map[p.getPlayerY()][p.getPlayerX() + 1] == ' ') {
+			map[p.getPlayerY()][p.getPlayerX() + 1] = '@';
+			map[p.getPlayerY()][p.getPlayerX()] = ' ';
 			movement = true;
 		}
 		else {
@@ -172,43 +173,43 @@ void Game::keyInput() {
 		break;
 
 	case 'e':
-		if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'C') {
-			openChest(player.getPlayerY() - 1, player.getPlayerX());
+		if (map[p.getPlayerY() - 1][p.getPlayerX()] == 'C') {
+			openChest(p.getPlayerY() - 1, p.getPlayerX());
 		}
-		else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'C') {
-			openChest(player.getPlayerY() + 1, player.getPlayerX());
+		else if (map[p.getPlayerY() + 1][p.getPlayerX()] == 'C') {
+			openChest(p.getPlayerY() + 1, p.getPlayerX());
 		}
-		else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'C') {
-			openChest(player.getPlayerY(), player.getPlayerX() - 1);
+		else if (map[p.getPlayerY()][p.getPlayerX() - 1] == 'C') {
+			openChest(p.getPlayerY(), p.getPlayerX() - 1);
 		}
-		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'C') {
-			openChest(player.getPlayerY(), player.getPlayerX() + 1);
+		else if (map[p.getPlayerY()][p.getPlayerX() + 1] == 'C') {
+			openChest(p.getPlayerY(), p.getPlayerX() + 1);
 		}
-		else if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'K') {
+		else if (map[p.getPlayerY() - 1][p.getPlayerX()] == 'K') {
 			openDoor();
 		}
-		else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'K') {
+		else if (map[p.getPlayerY() + 1][p.getPlayerX()] == 'K') {
 			openDoor();
 		}
-		else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'K') {
+		else if (map[p.getPlayerY()][p.getPlayerX() - 1] == 'K') {
 			openDoor();
 		}
-		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'K') {
+		else if (map[p.getPlayerY()][p.getPlayerX() + 1] == 'K') {
 			openDoor();
 		}
-		else if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'S') {
+		else if (map[p.getPlayerY() - 1][p.getPlayerX()] == 'S') {
 			stairs();
 		}
-		else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'S') {
+		else if (map[p.getPlayerY() + 1][p.getPlayerX()] == 'S') {
 			stairs();
 		}
-		else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'S') {
+		else if (map[p.getPlayerY()][p.getPlayerX() - 1] == 'S') {
 			stairs();
 		}
-		else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'S') {
+		else if (map[p.getPlayerY()][p.getPlayerX() + 1] == 'S') {
 			stairs();
 		}
-		else if (map[player.getPlayerY() - 1][player.getPlayerX()] == 'T') {
+		else if (map[p.getPlayerY() - 1][p.getPlayerX()] == 'T') {
 			if (floor == 0) {
 				teleporter();
 			}
@@ -229,7 +230,7 @@ void Game::keyInput() {
 				}
 			}
 		}
-			else if (map[player.getPlayerY() + 1][player.getPlayerX()] == 'T') {
+			else if (map[p.getPlayerY() + 1][p.getPlayerX()] == 'T') {
 				if (floor == 0) {
 					teleporter();
 				}
@@ -250,7 +251,7 @@ void Game::keyInput() {
 					}
 				}
 			}
-			else if (map[player.getPlayerY()][player.getPlayerX() - 1] == 'T') {
+			else if (map[p.getPlayerY()][p.getPlayerX() - 1] == 'T') {
 				if (floor == 0) {
 					teleporter();
 				}
@@ -271,7 +272,7 @@ void Game::keyInput() {
 					}
 				}
 			}
-			else if (map[player.getPlayerY()][player.getPlayerX() + 1] == 'T') {
+			else if (map[p.getPlayerY()][p.getPlayerX() + 1] == 'T') {
 				if (floor == 0) {
 					teleporter();
 				}
@@ -311,7 +312,7 @@ void Game::openChest(int yCord, int xCord) {
 	return;
 }
 
-void Game::battle(Player p, Monster m) {
+void Game::battle(Player &p, Monster &m) {
 	char turn = 'P';
 	system("cls");
 
@@ -335,7 +336,7 @@ void Game::battle(Player p, Monster m) {
 			switch (choice) {
 			case 1:
 				if (p.hit()) {
-					cout << "You hit the " << m.getName() << " for " << p.attack(&m) << endl;
+					cout << "You hit the " << m.getName() << " for " << p.attack(m) << endl;
 					system("pause");
 				}
 				else {
@@ -355,7 +356,7 @@ void Game::battle(Player p, Monster m) {
 		else {
 			if (m.hit()) {
 				cout << "The " << m.getName() << " is attacking!" << endl;
-				cout << "You lost " << m.attack(&p) << " health!" << endl;
+				cout << "You lost " << m.attack(p) << " health!" << endl;
 				system("pause");
 			}
 			else {

@@ -70,19 +70,19 @@ bool Entity::hit() {
 	} 
 }
 
-int Entity::attack(Entity *other) {
-	int h = other->getHealth();
+int Entity::attack(Entity &other) {
+	int h = other.getHealth();
 	int d = getDamage(other);
 
 	h -= d;
-	other->setHealth(h);
+	other.setHealth(h);
 
 	return d;
 }
 
-int Entity::getDamage(Entity *other) {
-	if (getStrength() < other->getDefense()) {
-		return (getStrength() - ((*other).getDefense() / 2)) / 2;
+int Entity::getDamage(Entity &other) {
+	if (getStrength() < other.getDefense()) {
+		return (getStrength() - (other.getDefense() / 2)) / 2;
 	}
 	else {
 		return (getStrength() + 4) / 6;

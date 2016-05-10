@@ -27,6 +27,6 @@ public:
 	void setLevel(int value);
 
 	bool hit();
-	int attack(Entity *other);
-	int getDamage(Entity *other);
+	int attack(Entity &other);
+	int getDamage(Entity &other);
 };

@@ -81,10 +81,13 @@ int Entity::attack(Entity &other) {
 }
 
 int Entity::getDamage(Entity &other) {
-	if (getStrength() < other.getDefense()) {
-		return (getStrength() - (other.getDefense() / 2)) / 2;
+	double damage;
+	if (getStrength() > other.getDefense()) {
+		damage = (getStrength() - (other.getDefense() / 2.0)) / 2.0;
+		return damage;
 	}
 	else {
-		return (getStrength() + 4) / 6;
+		damage = (getStrength() + 4.0) / 6.0;
+		return damage;
 	}
 }

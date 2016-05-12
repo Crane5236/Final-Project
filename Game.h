@@ -18,8 +18,8 @@ private:
 	char map[16][40];
 	char key;
 	ifstream f;
-	bool gameRun = true;
 	bool movement = false;
+	bool gameRun = true;
 	bool TP5;
 	bool TP10;
 	int randomNumber;

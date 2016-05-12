@@ -80,47 +80,48 @@ void Game::draw() {
 }
 
 void Game::run() {
-	menu();
-	srand(time(NULL));
-	floor = 0;
-	TP5 = false;
-	TP10 = false;
-	loadMap(floor);
+	while (gameRun == true) {
+		menu();
+		srand(time(NULL));
+		floor = 0;
+		TP5 = false;
+		TP10 = false;
+		loadMap(floor);
 
-	
 
-	do {
-		draw();
-		cout << "________________________________________________________________________________";
-		cout << "Health: " << p.getHealth() << "/" << p.getMaxHealth() << endl;
-		cout << "Mana: " << p.getMana() << "/" << p.getMaxMana() << endl;
-		cout << "Level: "<< p.getLevel() << endl;
-		cout << "Floor: ";
-		if (floor == 0) {
-			cout << "Hub" << endl << endl;
-		}
-		else {
-			cout << floor << endl << endl;
-		}
-		cout << "Input key (w/s/a/d/e): ";
-		keyInput();
 
-		if (movement == true) {
-			if (floor == 0 || floor == 10 || floor == 11) {
+		while (gameRun == true && p.getHealth() > 0) {
+			draw();
+			cout << "________________________________________________________________________________";
+			cout << "Health: " << p.getHealth() << "/" << p.getMaxHealth() << endl;
+			cout << "Mana: " << p.getMana() << "/" << p.getMaxMana() << endl;
+			cout << "Level: " << p.getLevel() << endl;
+			cout << "Floor: ";
+			if (floor == 0) {
+				cout << "Hub" << endl << endl;
 			}
 			else {
-				randomNumber = rand() % 24 + 1;
+				cout << floor << endl << endl;
+			}
+			cout << "Input key (w/s/a/d/e): ";
+			keyInput();
 
-				if (randomNumber == 1) {
-					m = Monster();
-					battle(p, m);
+			if (movement == true) {
+				if (floor == 0 || floor == 10 || floor == 11) {
+				}
+				else {
+					randomNumber = rand() % 24 + 1;
+
+					if (randomNumber == 1) {
+						m = Monster();
+						battle(p, m);
+					}
 				}
 			}
+			system("cls");
 		}
-
-		system("cls");
-	} while (gameRun);
-	system("pause");
+	}
+	return;
 }
 
 void Game::keyInput() {
@@ -325,7 +326,7 @@ void Game::battle(Player &p, Monster &m) {
 	cout << "---------------------------------" << endl;
 	system("pause");
 	
-	while (p.getHealth() != 0 && m.getHealth() != 0) {
+	while (p.getHealth() > 0 && m.getHealth() > 0) {
 		if (turn == 'P') {
 			system("cls");
 			battleScreen(p);
@@ -434,15 +435,24 @@ void Game::menu() {
 		cout << "Tower of Tartarus" << endl << endl;
 		cout << "1. New Game" << endl;
 		cout << "2. Load Game" << endl;
+		cout << "3. Exit" << endl;
 		cin >> choice;
-	} while (choice < 1 || choice > 2);
+	} while (choice < 1 || choice > 3);
 	system("cls");
 
-	if (choice == 1) {
+	switch (choice) {
+	case 1:
 		cout << "Enter your name: ";
 		cin.ignore();
 		getline(cin, Pname);
 		p.setName(Pname);
+		gameRun = true;
+		break;
+	case 2:
+		break;
+	case 3:
+		gameRun = false;
+		break;
 	}
 
 	system("cls");

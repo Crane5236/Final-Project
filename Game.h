@@ -46,4 +46,5 @@ public:
 	void menu();
 	void teleporter();
 	void activateTP(int floor);
+	void inventory();
 };

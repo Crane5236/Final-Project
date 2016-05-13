@@ -103,7 +103,7 @@ void Game::run() {
 			else {
 				cout << floor << endl << endl;
 			}
-			cout << "Input key (w/s/a/d/e): ";
+			cout << "Input key (w/s/a/d/e/i): ";
 			keyInput();
 
 			if (movement == true) {
@@ -299,6 +299,8 @@ void Game::keyInput() {
 			}
 
 			break;
+			case 'i':
+				inventory();
 		}
 	}
 
@@ -387,7 +389,7 @@ void Game::battleScreen(Player p) {
 	cout << "|" << setw(16) << left << p.getName() << "|" << endl;
 	cout << "|" << "Level " << setw(10) << right << p.getLevel() << "|" << endl;
 	cout << "|" << "HP" << setw(14) << right << p.getHealth() << "|" << endl;
-	cout << "|" << "MP" << setw(14) << p.getMana() << "|" << endl;
+	cout << "|" << "MP" << setw(14) << right << p.getMana() << "|" << endl;
 	cout << "------------------" << endl;
 	cout << "------------------------      ------------------------" << endl;
 	cout << "|1. Attack     2. Spell|      |Enemy:                |" << endl;
@@ -567,5 +569,47 @@ void Game::activateTP(int floor) {
 		system("pause");
 		system("cls");
 		return;
+	}
+}
+
+void Game::inventory() {
+	system("cls");
+	cout << "------------------" << endl;
+	cout << "|" << setw(16) << left << p.getName() << "|" << endl;
+	cout << "|" << "Level " << setw(10) << right << p.getLevel() << "|" << endl;
+	cout << "|" << "HP" << setw(14) << right << p.getHealth() << "|" << endl;
+	cout << "|" << "MP" << setw(14) << right << p.getMana() << "|" << endl;
+	cout << "|" << "Gold" << setw(12) << right << p.getGold() << "|" << endl;
+	cout << "------------------" << endl;
+	cout << "------------------" << endl;
+	cout << "|1. Stats        |" << endl;
+	cout << "|2. Items        |" << endl;
+	cout << "|3. Escape       |" << endl;
+	cout << "|4. Main Menu    |" << endl;
+	cout << "------------------" << endl;
+
+	int choice;
+
+	cout << "Enter an option: ";
+	
+	do {
+		cin >> choice;
+	} while (choice < 1 || choice > 4);
+
+	switch (choice) {
+	case 1:
+		system("cls");
+		cout << "------------------" << endl;
+		cout << "|" << setw(16) << left << p.getName() << "|" << endl;
+		cout << "|" << "Level " << setw(10) << right << p.getLevel() << "|" << endl;
+		cout << "|" << "HP" << setw(14) << right << p.getHealth() << "|" << endl;
+		cout << "|Max HP" << setw(10) << right << p.getMaxHealth() << "|" << endl;
+		cout << "|" << "MP" << setw(14) << right << p.getMana() << "|" << endl;
+		cout << "|Max MP" << setw(10) << right << p.getMaxMana() << "|" << endl;
+		cout << "|Strength" << setw(8) << right << p.getStrength() << "|" << endl;
+		cout << "|Defense" << setw(9) << right << p.getDefense() << "|" << endl;
+		cout << "------------------" << endl;
+		system("pause");
+		system("cls");
 	}
 }

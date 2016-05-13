@@ -8,6 +8,7 @@ class Player : public Entity {
 private:
 	int playerXPos;
 	int playerYPos;
+	int gold;
 	string name;
 public:
 	void setPlayerX(int value);
@@ -17,6 +18,9 @@ public:
 	int getPlayerX();
 	int getPlayerY();
 	string getName();
+
+	int getGold();
+	void setGold(int value);
 
 	Player();
 };

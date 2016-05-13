@@ -24,6 +24,14 @@ string Player::getName() {
 	return name;
 }
 
+int Player::getGold() {
+	return gold;
+}
+
+void Player::setGold(int value) {
+	gold = value;
+}
+
 Player::Player() {
 	setMaxHealth(13);
 	setHealth(13);
@@ -32,4 +40,5 @@ Player::Player() {
 	setLevel(1);
 	setMana(15);
 	setMaxMana(15);
+	setGold(0);
 }

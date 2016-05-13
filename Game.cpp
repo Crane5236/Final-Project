@@ -4,6 +4,8 @@ void Game::loadMap(int floor) {
 	switch (floor){
 	case 0:
 		f.open("Hub.txt");
+		p.setHealth(p.getMaxHealth());
+		p.setMana(p.getMaxMana()); 
 		break;
 	case 1:
 		f.open("Level1.txt");
@@ -611,5 +613,22 @@ void Game::inventory() {
 		cout << "------------------" << endl;
 		system("pause");
 		system("cls");
+		break;
+	case 2:
+		break;
+	case 3:
+		if (floor > 0) {
+			cout << "Warping to base floor." << endl;
+			system("pause");
+			floor = 0;
+			loadMap(floor);
+		}
+		else {
+			cout << "You are already on the base floor." << endl;
+			system("pause");
+		}
+		break;
+	case 4:
+		break;
 	}
 }

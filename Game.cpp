@@ -88,11 +88,12 @@ void Game::run() {
 		floor = 0;
 		TP5 = false;
 		TP10 = false;
+		loopRun = true;
 		loadMap(floor);
+		inventory.push_back(temp);
+		inventory.push_back(temp);
 
-
-
-		while (gameRun == true && p.getHealth() > 0) {
+		while (loopRun == true && p.getHealth() > 0) {
 			draw();
 			cout << "________________________________________________________________________________";
 			cout << "Health: " << p.getHealth() << "/" << p.getMaxHealth() << endl;
@@ -212,6 +213,18 @@ void Game::keyInput() {
 		else if (map[p.getPlayerY()][p.getPlayerX() + 1] == 'S') {
 			stairs();
 		}
+		else if (map[p.getPlayerY() - 1][p.getPlayerX()] == 'M') {
+			store();
+		}
+		else if (map[p.getPlayerY() + 1][p.getPlayerX()] == 'M') {
+			store();
+		}
+		else if (map[p.getPlayerY()][p.getPlayerX() - 1] == 'M') {
+			store();
+		}
+		else if (map[p.getPlayerY()][p.getPlayerX() + 1] == 'M') {
+			store();
+		}
 		else if (map[p.getPlayerY() - 1][p.getPlayerX()] == 'T') {
 			if (floor == 0) {
 				teleporter();
@@ -302,7 +315,8 @@ void Game::keyInput() {
 
 			break;
 			case 'i':
-				inventory();
+				inventoryScreen();
+				break;
 		}
 	}
 
@@ -574,7 +588,7 @@ void Game::activateTP(int floor) {
 	}
 }
 
-void Game::inventory() {
+void Game::inventoryScreen() {
 	system("cls");
 	cout << "------------------" << endl;
 	cout << "|" << setw(16) << left << p.getName() << "|" << endl;
@@ -615,6 +629,14 @@ void Game::inventory() {
 		system("cls");
 		break;
 	case 2:
+		system("cls");
+
+		cout << "     Item             Quantity" << endl;
+		cout << "1. HP Potion            " << setw(2) << inventory[0].getQuantity() << "     -------------" << endl;
+		cout << "2. MP Potion            " << setw(2) << inventory[1].getQuantity() << "     |HP" << setw(9) << p.getHealth() << "|" << endl;
+		cout << "3. Exit" << setw(27) << right << "|MP" << setw(9) << p.getMana() << "|" << endl;
+		cout << setw(44) << right << "-------------" << endl;
+		system("pause");
 		break;
 	case 3:
 		if (floor > 0) {
@@ -629,6 +651,58 @@ void Game::inventory() {
 		}
 		break;
 	case 4:
+		cout << "Are you sure you want to return to the main menu? (y/n):";
+		char option;
+		cin >> option;
+
+		switch (option) {
+		case 'y':
+			loopRun = false;
+			break;
+		case 'Y':
+			loopRun = false;
+			break;
+		}
 		break;
 	}
+}
+
+void Game::store() {
+	do{
+		system("cls");
+		cout << "   Item Name          Cost         Quantity Owned" << endl;
+		cout << "1. HP Potion          10G             " << inventory[0].getQuantity() << endl;
+		cout << "1. MP Potion          15G             " << inventory[1].getQuantity() << endl;
+		cout << "3. Exit" << endl << endl;
+
+		cout << "Player Gold: " << p.getGold() << endl;
+		cout << "Select item to buy: ";
+		int option;
+		cin >> option;
+
+		switch (option) {
+		case 1:
+			if (p.getGold() >= 10) {
+				p.setGold(p.getGold() - 10);
+				inventory[0].setQuantity(inventory[0].getQuantity() + 1);
+			}
+			else{
+				cout << "You can not afford this item." << endl;
+				system("pause");
+			}
+			break;
+		case 2:
+			if (p.getGold() >= 15) {
+				p.setGold(p.getGold() - 15);
+				inventory[1].setQuantity(inventory[1].getQuantity() + 1);
+			}
+			else{
+				cout << "You can not afford this item." << endl;
+				system("pause");
+			}
+			break;
+		case 3:
+			return;
+		}
+	} while (choice != 3); 
 }

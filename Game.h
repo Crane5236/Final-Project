@@ -7,9 +7,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <iomanip>
+#include <vector>
 #include "Player.h"
 #include "Entity.h"
 #include "Monster.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -20,6 +22,7 @@ private:
 	ifstream f;
 	bool movement = false;
 	bool gameRun = true;
+	bool loopRun = true;
 	bool TP5;
 	bool TP10;
 	int randomNumber;
@@ -33,6 +36,8 @@ private:
 	string Pname;
 	Player p;
 	Monster m;
+	Item temp;
+	vector<Item> inventory;
 public:
 	void loadMap(int floor);
 	void draw();
@@ -46,5 +51,6 @@ public:
 	void menu();
 	void teleporter();
 	void activateTP(int floor);
-	void inventory();
+	void inventoryScreen();
+	void store();
 };

@@ -40,5 +40,5 @@ Player::Player() {
 	setLevel(1);
 	setMana(15);
 	setMaxMana(15);
-	setGold(0);
+	setGold(1000);
 }

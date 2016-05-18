@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Player.h"
 
 using namespace std;
 
@@ -16,6 +17,8 @@ public:
 	void setName(string value);
 	void setQuantity(int value);
 	void setCost(int value);
+
+	void use(int option, Player &p);
 
 	Item();
 	Item(string n);

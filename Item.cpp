@@ -24,6 +24,24 @@ void Item::setCost(int value) {
 	cost = value;
 }
 
+void Item::use(int option, Player &p) {
+	setQuantity(getQuantity() - 1);
+
+	if (option == 1) {
+
+		p.setHealth(p.getHealth() + (p.getMaxHealth() * 0.25));
+		if (p.getHealth() > p.getMaxHealth()) {
+			p.setHealth(p.getMaxHealth());
+		}
+	}
+	if (option == 2) {
+		p.setMana(p.getMana() + (p.getMaxMana() * 0.25));
+		if (p.getMana() > p.getMaxMana()) {
+			p.setMana(p.getMaxMana());
+		}
+	}
+}
+
 Item::Item() {
 	name = "Missing";
 	quantity = 0;

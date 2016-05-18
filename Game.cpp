@@ -333,6 +333,7 @@ void Game::openChest(int yCord, int xCord) {
 
 void Game::battle(Player &p, Monster &m) {
 	char turn = 'P';
+	bool run = false;
 	system("cls");
 
 	cout << "---------------------------------" << endl;
@@ -344,7 +345,7 @@ void Game::battle(Player &p, Monster &m) {
 	cout << "---------------------------------" << endl;
 	system("pause");
 	
-	while (p.getHealth() > 0 && m.getHealth() > 0) {
+	while (p.getHealth() > 0 && m.getHealth() > 0 && run == false) {
 		if (turn == 'P') {
 			system("cls");
 			battleScreen(p);
@@ -369,6 +370,20 @@ void Game::battle(Player &p, Monster &m) {
 			case 3:
 				break;
 			case 4: 
+				int randomNumber = rand() % 10 + 1;
+
+				if (randomNumber == 1) {
+					cout << "You have failed to escape!" << endl;
+					turn = 'M';
+					system("pause");
+					break;
+				}
+				else {
+					run = true;
+					cout << "You have escaped!" << endl;
+					system("pause");
+				}
+				
 				break;
 			}
 		}
@@ -390,7 +405,7 @@ void Game::battle(Player &p, Monster &m) {
 		cout << "You have died! Game over!" << endl;
 		system("pause");
 	}
-	else {
+	else if (run == false) {
 		cout << "You have won!" << endl;
 		system("pause");
 	}
@@ -629,14 +644,34 @@ void Game::inventoryScreen() {
 		system("cls");
 		break;
 	case 2:
-		system("cls");
+		int option;
+		do {
+			system("cls");
+			char consume = true;
 
-		cout << "     Item             Quantity" << endl;
-		cout << "1. HP Potion            " << setw(2) << inventory[0].getQuantity() << "     -------------" << endl;
-		cout << "2. MP Potion            " << setw(2) << inventory[1].getQuantity() << "     |HP" << setw(9) << p.getHealth() << "|" << endl;
-		cout << "3. Exit" << setw(27) << right << "|MP" << setw(9) << p.getMana() << "|" << endl;
-		cout << setw(44) << right << "-------------" << endl;
-		system("pause");
+			cout << "     Item             Quantity" << endl;
+			cout << "1. HP Potion            " << setw(2) << inventory[0].getQuantity() << "     -------------" << endl;
+			cout << "2. MP Potion            " << setw(2) << inventory[1].getQuantity() << "     |HP" << setw(9) << p.getHealth() << "|" << endl;
+			cout << "3. Exit" << setw(27) << right << "|MP" << setw(9) << p.getMana() << "|" << endl;
+			cout << setw(44) << right << "-------------" << endl;
+			cout << "Select an option: ";
+			cin >> option;
+			if (option == 1 || option == 2) {
+				if (option == 1 && inventory[option - 1].getQuantity() <= 0) {
+					cout << "You don't have any Health Potions." << endl;
+					consume = false;
+					system("pause");
+				}
+				if (option == 2 && inventory[option - 1].getQuantity() <= 0) {
+					cout << "You don't have any Mana Potions." << endl;
+					consume = false;
+					system("pause");
+				}
+				if (consume) {
+					inventory[option - 1].use(option, p);
+				}
+			}
+		} while (option != 3);
 		break;
 	case 3:
 		if (floor > 0) {
@@ -652,10 +687,10 @@ void Game::inventoryScreen() {
 		break;
 	case 4:
 		cout << "Are you sure you want to return to the main menu? (y/n):";
-		char option;
-		cin >> option;
+		char letter;
+		cin >> letter;
 
-		switch (option) {
+		switch (letter) {
 		case 'y':
 			loopRun = false;
 			break;

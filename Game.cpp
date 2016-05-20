@@ -88,7 +88,6 @@ void Game::run() {
 		floor = 0;
 		TP5 = false;
 		TP10 = false;
-		loopRun = true;
 		loadMap(floor);
 		inventory.push_back(temp);
 		inventory.push_back(temp);
@@ -366,8 +365,54 @@ void Game::battle(Player &p, Monster &m) {
 				turn = 'M';
 				break;
 			case 2:
+				int spellChoice;
+				do {
+					system("cls");
+					battleScreen(p);
+					cout << "1. Heal  5 MP" << endl;
+					cout << "2. Back" << endl;
+					cin >> spellChoice;
+				} while (spellChoice < 1 || spellChoice > 2);
+
+				if (spellChoice == 1) {
+					if (p.getMana() > 0) {
+						p.setHealth(p.getHealth() + (p.getMaxHealth() * 0.50));
+						p.setMana(p.getMana() - 5); 
+						cout << "You have healed!" << endl;
+						system("pause");
+						turn = 'M';
+					}
+				}
 				break;
 			case 3:
+				int itemOption;
+				do {
+					system("cls");
+					battleScreen(p);
+					cout << "     Item            Quantity" << endl;
+					cout << "1. HP Potion" << setw(14) << right << inventory[0].getQuantity() << endl;
+					cout << "2. MP Potion" << setw(14) << right << inventory[1].getQuantity() << endl;
+					cout << "3. Back" << endl;
+					cin >> itemOption;
+				} while (itemOption < 1 || itemOption > 3);
+				switch (itemOption) {
+				case 1:
+					if (inventory[0].getQuantity() > 0) {
+						inventory[0].use(1, p);
+						cout << "You have regained health." << endl;
+						system("pause");
+						turn = 'M';
+					}
+					break;
+				case 2:
+					if (inventory[1].getQuantity() > 0) {
+						inventory[1].use(2, p);
+						cout << "You have regained mana." << endl;
+						system("pause");
+						turn = 'M';
+					}
+					break;
+				}
 				break;
 			case 4: 
 				int randomNumber = rand() % 10 + 1;
@@ -407,7 +452,14 @@ void Game::battle(Player &p, Monster &m) {
 	}
 	else if (run == false) {
 		cout << "You have won!" << endl;
+		cout << "You have earned " << m.getGold() << " gold!" << endl;
+		p.setGold(p.getGold() + m.getGold());
+		cout << "You have earned " << m.getXP() << " XP!" << endl;
+		p.setXP(p.getXP() + m.getXP());
 		system("pause");
+		if (p.getXP() >= p.getLevelUp()) {
+			p.levelUp();
+		}
 	}
 
 	system("pause");
@@ -467,23 +519,27 @@ void Game::menu() {
 		system("cls");
 		cout << "Tower of Tartarus" << endl << endl;
 		cout << "1. New Game" << endl;
-		cout << "2. Load Game" << endl;
-		cout << "3. Exit" << endl;
+		cout << "2. Exit" << endl;
 		cin >> choice;
-	} while (choice < 1 || choice > 3);
+	} while (choice < 1 || choice > 2);
 	system("cls");
 
 	switch (choice) {
 	case 1:
-		cout << "Enter your name: ";
 		cin.ignore();
-		getline(cin, Pname);
+
+		do {
+			cout << "Enter your name: ";
+			getline(cin, Pname);
+			if (Pname.size() > 16) {
+				cout << "Name must be at most 16 characters long." << endl;
+			}
+		} while (Pname.size() > 16);
 		p.setName(Pname);
-		gameRun = true;
+		loopRun = true;
 		break;
 	case 2:
-		break;
-	case 3:
+		loopRun = false;
 		gameRun = false;
 		break;
 	}
@@ -637,6 +693,8 @@ void Game::inventoryScreen() {
 		cout << "|Max HP" << setw(10) << right << p.getMaxHealth() << "|" << endl;
 		cout << "|" << "MP" << setw(14) << right << p.getMana() << "|" << endl;
 		cout << "|Max MP" << setw(10) << right << p.getMaxMana() << "|" << endl;
+		cout << "|XP" << setw(14) << right << p.getXP() << "|" << endl;
+		cout << "|Level up" << setw(8) << p.getLevelUp() - p.getXP() << "|" << endl;
 		cout << "|Strength" << setw(8) << right << p.getStrength() << "|" << endl;
 		cout << "|Defense" << setw(9) << right << p.getDefense() << "|" << endl;
 		cout << "------------------" << endl;
@@ -692,6 +750,7 @@ void Game::inventoryScreen() {
 
 		switch (letter) {
 		case 'y':
+			
 			loopRun = false;
 			break;
 		case 'Y':

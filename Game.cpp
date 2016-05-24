@@ -115,7 +115,7 @@ void Game::run() {
 					randomNumber = rand() % 24 + 1;
 
 					if (randomNumber == 1) {
-						m = Monster();
+						loadMonster(m, floor);
 						battle(p, m);
 					}
 				}
@@ -673,6 +673,7 @@ void Game::inventoryScreen() {
 	cout << "|2. Items        |" << endl;
 	cout << "|3. Escape       |" << endl;
 	cout << "|4. Main Menu    |" << endl;
+	cout << "|5. Exit         |" << endl;
 	cout << "------------------" << endl;
 
 	int choice;
@@ -681,7 +682,7 @@ void Game::inventoryScreen() {
 	
 	do {
 		cin >> choice;
-	} while (choice < 1 || choice > 4);
+	} while (choice < 1 || choice > 5);
 
 	switch (choice) {
 	case 1:
@@ -758,6 +759,8 @@ void Game::inventoryScreen() {
 			break;
 		}
 		break;
+	case 5:
+		break;
 	}
 }
 
@@ -799,4 +802,81 @@ void Game::store() {
 			return;
 		}
 	} while (choice != 3); 
+}
+
+void Game::loadMonster(Monster &m, int value) {
+	int random;
+	switch (value) {
+	case 1:
+		random = rand() % 2 + 1;
+
+		if (random == 1) {
+			m.setName("Slime");
+			m.setMaxHealth(3);
+			m.setHealth(3);
+			m.setStrength(5);
+			m.setDefense(3);
+			m.setLevel(1);
+			m.setGold(5);
+			m.setXP(2);
+		}
+		else {
+			m.setName("Red Slime");
+			m.setMaxHealth(3);
+			m.setHealth(3);
+			m.setStrength(7);
+			m.setDefense(3);
+			m.setLevel(2);
+			m.setGold(10);
+			m.setXP(4);
+		}
+		break;
+	case 2:
+		random = rand() % 2 + 1;
+
+		if (random == 1) {
+			m.setName("Ghost");
+			m.setMaxHealth(6);
+			m.setHealth(6);
+			m.setStrength(9);
+			m.setDefense(6);
+			m.setLevel(3);
+			m.setGold(6);
+			m.setXP(4);
+		}
+		else {
+			m.setName("Mage");
+			m.setMaxHealth(3);
+			m.setHealth(3);
+			m.setStrength(7);
+			m.setDefense(3);
+			m.setLevel(4);
+			m.setGold(12);
+			m.setXP(6);
+		}
+		break;
+	case 3:
+		random = rand() % 2 + 1;
+		if (random == 1) {
+		m.setName("Zombie");
+		m.setMaxHealth(10);
+		m.setHealth(10);
+		m.setStrength(11);
+		m.setDefense(8);
+		m.setLevel(5);
+		m.setGold(8);
+		m.setXP(8);
+	}
+		else {
+			m.setName("Golem");
+			m.setMaxHealth(14);
+			m.setHealth(14);
+			m.setStrength(12);
+			m.setDefense(6);
+			m.setLevel(6);
+			m.setGold(12);
+			m.setXP(12);
+		}
+		break;
+	}
 }

@@ -53,4 +53,5 @@ public:
 	void activateTP(int floor);
 	void inventoryScreen();
 	void store();
+	void loadMonster(Monster &m, int value);
 };

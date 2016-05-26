@@ -323,10 +323,27 @@ void Game::openChest(int yCord, int xCord) {
 	map[yCord][xCord] = ' ';
 	system("cls");
 	draw();
-	cout << "________________________________________________________________________________";
-	cout << "You got an item!" << endl;
-	system("pause");
-
+	int randItem = rand() % 3 + 1;
+	
+	if (randItem == 1) {
+		inventory[0].setQuantity(inventory[0].getQuantity() + 1);
+		cout << "________________________________________________________________________________";
+		cout << "You got a Health Potion!" << endl;
+		system("pause");
+	}
+	else if (randItem == 2) {
+		inventory[1].setQuantity(inventory[1].getQuantity() + 1);
+		cout << "________________________________________________________________________________";
+		cout << "You got a Mana Potion!" << endl;
+		system("pause");
+	}
+	else if (randItem == 3) {
+		p.setGold(p.getGold() + 25);
+		cout << "________________________________________________________________________________";
+		cout << "You got 25 gold!" << endl;
+		system("pause");
+	}
+	system("cls");
 	return;
 }
 
@@ -462,7 +479,6 @@ void Game::battle(Player &p, Monster &m) {
 		}
 	}
 
-	system("pause");
 	movement = false;
 	return;
 }
